@@ -1,24 +1,46 @@
 import './App.css';
 
-function Header(props){
-  
+function Header({name,year}){
   return (
     <header>
-      <h1>{props.name} Kitchen</h1>
-      <p>Copyright {props.year}</p>
+      <h1>{name} Kitchen</h1>
+      <p>Copyright {year}</p>
     </header>
   )
-}
+};
+
+
+const items = [
+  "Pizza Margherita",
+  "Spaghetti Bolognese",
+  "Lasagna Al Forno",
+  "Risotto ai Funghi",
+  "Tiramisu",
+  "Gelato"
+];
+
+const dishObjects = items.map((dish, i) => ({
+  id: i,
+  title: dish,
+}));
+
+
+function Main({dishes}){
+  return (
+    <ul>
+      {dishes.map((dish) => 
+        <li key={dish.id} style = {{listStyleType: "none"}}> {dish.title} </li>)}
+    </ul>
+  )
+};
 
 function App() {
   return ( 
     <div>
-      <Header name="French" year={new Date().getFullYear()} />
-      <main>
-        <h2>We serve the most delicious Italian Cuisine</h2>
-      </main>
+      <Header name="Italian" year={new Date().getFullYear()} />
+      <Main dishes = {dishObjects} />
     </div>
   )
-}
+};
 
-export default App
+export default App;
