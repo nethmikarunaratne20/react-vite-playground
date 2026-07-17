@@ -74,15 +74,17 @@ function App() {
   // const what = useState();
   // console.log(what);  ---> this returns an array with 2 elements.
   
-  const [status, setStatus] = useState("Open");
+  const [status, setStatus] = useState(true);
   console.log(status);
 
   return (
     <div>
       {/* displays the current state of the restaurant */}
-      <h1>The Restaurant is currently {status}</h1>
-      <button onClick={() => setStatus("Closed")}>Close Restaurant</button>
-
+      <h1>The Restaurant is currently {status ? "open" : "closed"}</h1>
+      <button onClick={() => setStatus(!status)}>
+        {status ? "Close" : "Open"} Restaurant
+      </button>
+      
       <Header name="Italian" year={new Date().getFullYear()} />
       <Main dishes={dishObjects} />
     </div>
