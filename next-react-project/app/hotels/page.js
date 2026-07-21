@@ -5,10 +5,13 @@ async function getData() {
 
 function HotelBlock({name, capacity}){
     return(
-        <div>
-            <h2>{name}</h2>
-            <p>{capacity}</p>
-        </div>
+        <tbody>
+            <tr>
+                <td>{name}</td>
+                <td>{capacity}</td>
+            </tr>
+        </tbody>            
+
     )
 }
 
@@ -19,12 +22,21 @@ export default async function Page() {
             <div>
                 <h1>Hotel Details</h1>
                 <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>Capacity</th>
+                            </tr>
+                        </thead>
+                    
                     {data.map((hotel) => (
                         <HotelBlock 
                             key={hotel.id} 
                             name={hotel.name} 
                             capacity={hotel.capacity}/>
                     ))}
+                    </table>
                 </div>
             </div>
         </main>
