@@ -1,19 +1,10 @@
+import HotelBlock from "./HotelBlock"
+
 async function getData() {
     const res = await fetch("https://snowtooth-hotel-api.fly.dev");
     return res.json();
 }
 
-function HotelBlock({name, capacity}){
-    return(
-        <tbody>
-            <tr>
-                <td>{name}</td>
-                <td>{capacity}</td>
-            </tr>
-        </tbody>            
-
-    )
-}
 
 export default async function Page() {
     const data =  await getData();
@@ -27,12 +18,14 @@ export default async function Page() {
                             <tr>
                                 <th>Hotel Name</th>
                                 <th>Capacity</th>
+                                <th>Image</th>
                             </tr>
                         </thead>
                     
                     {data.map((hotel) => (
                         <HotelBlock 
                             key={hotel.id} 
+                            id={hotel.id} 
                             name={hotel.name} 
                             capacity={hotel.capacity}/>
                     ))}
